@@ -1,0 +1,1442 @@
+/* ==========================================================================
+   RADIO MANANTIAL 105.3 FM - OFICIAL DESIGN SYSTEM & STYLES
+   Paleta: Cian Eléctrico (#04adf6), Azul Marino Profundo (#070d18), Blanco Puro (#fff)
+   ========================================================================== */
+
+:root {
+  --color-primary: #04adf6;
+  --color-primary-dark: #0284bd;
+  --color-primary-glow: rgba(4, 173, 246, 0.4);
+  --color-primary-subtle: rgba(4, 173, 246, 0.12);
+  --color-live: #10b981;
+  --color-live-glow: rgba(16, 185, 129, 0.4);
+
+  --bg-deep: #070d18;
+  --bg-surface: #0e1726;
+  --bg-card: rgba(18, 28, 45, 0.75);
+  --bg-card-hover: rgba(25, 38, 60, 0.85);
+
+  --text-main: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(4, 173, 246, 0.35);
+
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  --shadow-glow: 0 0 30px var(--color-primary-glow);
+  --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  background-color: #040810;
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Background canvas with station wallpaper */
+#app-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 50% 20%, rgba(4, 173, 246, 0.12) 0%, transparent 60%),
+              linear-gradient(135deg, #040810 0%, #070d18 100%);
+  padding: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   DESKTOP PREVIEW LAYOUT & SMARTPHONE FRAME
+   -------------------------------------------------------------------------- */
+.device-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1100px;
+  width: 100%;
+}
+
+.smartphone-frame {
+  position: relative;
+  width: 390px;
+  height: 800px;
+  background: #000000;
+  border-radius: 50px;
+  padding: 12px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8),
+              0 0 0 4px #1e293b,
+              0 0 0 8px #0f172a,
+              0 0 60px rgba(4, 173, 246, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+/* Speaker Notch & Dynamic Island */
+.device-notch {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 26px;
+  background: #000000;
+  border-radius: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.camera-lens {
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle at 40% 40%, #1e3a8a, #020617);
+  border-radius: 50%;
+  border: 1px solid #1e293b;
+}
+
+.speaker-grill {
+  width: 44px;
+  height: 4px;
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+/* Top Phone Status Bar */
+.device-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 24px 4px 24px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  z-index: 90;
+  margin-top: 14px;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-icons svg {
+  width: 15px;
+  height: 15px;
+}
+
+.badge-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--color-live);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.5px;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-live);
+  box-shadow: 0 0 8px var(--color-live);
+  animation: pulse-dot 1.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* Bottom home bar indicator */
+.device-home-bar {
+  width: 130px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  margin: 6px auto 2px auto;
+  z-index: 90;
+}
+
+/* --------------------------------------------------------------------------
+   APP SCREEN INSIDE SMARTPHONE
+   -------------------------------------------------------------------------- */
+.app-screen {
+  position: relative;
+  flex: 1;
+  background: linear-gradient(180deg, rgba(7, 13, 24, 0.94) 0%, rgba(10, 20, 36, 0.96) 100%),
+              url('/assets/bg.jpg') center/cover no-repeat;
+  border-radius: 38px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Backdrop blur overlay */
+.app-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  z-index: 1;
+}
+
+/* Ensure app contents sit above backdrop filter */
+.app-header,
+.app-body,
+.bottom-nav {
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER
+   -------------------------------------------------------------------------- */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(7, 13, 24, 0.4);
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-logo {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(4, 173, 246, 0.4));
+}
+
+.header-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.station-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.2px;
+}
+
+.station-dial {
+  font-size: 0.72rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.icon-btn:hover {
+  background: var(--color-primary-subtle);
+  border-color: var(--border-glow);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+.timer-badge {
+  display: none;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  background: var(--color-primary);
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
+.timer-badge.active {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   SCROLLABLE MAIN APP BODY
+   -------------------------------------------------------------------------- */
+.app-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px 18px 24px 18px;
+  scrollbar-width: none;
+}
+
+.app-body::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-view {
+  display: none;
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.tab-view.active {
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   VIEW 1: REPRODUCTOR (PLAYER)
+   -------------------------------------------------------------------------- */
+.artwork-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 14px 0;
+}
+
+.artwork-glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-primary-glow) 0%, transparent 70%);
+  filter: blur(32px);
+  opacity: 0.5;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.artwork-disc-wrapper {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+
+.artwork-card {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7),
+              0 0 0 1px rgba(255, 255, 255, 0.12);
+  background: #0d1525;
+}
+
+.album-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.artwork-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(5, 10, 20, 0.7) 100%);
+}
+
+.live-pill {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(10, 16, 28, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.pulsing-record {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-live);
+  animation: pulse-dot 1.4s infinite;
+}
+
+/* Playing rotation animation for album disc */
+.playing .artwork-disc-wrapper {
+  animation: vinyl-pulse 3s infinite ease-in-out;
+}
+
+.playing .artwork-glow {
+  opacity: 0.9;
+  transform: scale(1.15);
+}
+
+@keyframes vinyl-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* --------------------------------------------------------------------------
+   AUDIO SPECTRUM VISUALIZER
+   -------------------------------------------------------------------------- */
+.visualizer-container {
+  width: 100%;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+#visualizer-canvas {
+  width: 100%;
+  max-width: 320px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   SONG & ARTIST METADATA
+   -------------------------------------------------------------------------- */
+.song-info-card {
+  text-align: center;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.song-title-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.song-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.3px;
+  margin-bottom: 4px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.song-artist {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.stream-stats-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.signal-indicator {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 10px;
+}
+
+.signal-indicator span {
+  width: 2px;
+  background: var(--color-primary);
+  border-radius: 1px;
+}
+
+.signal-indicator span:nth-child(1) { height: 4px; }
+.signal-indicator span:nth-child(2) { height: 7px; }
+.signal-indicator span:nth-child(3) { height: 10px; }
+
+.bullet-sep {
+  opacity: 0.5;
+}
+
+/* --------------------------------------------------------------------------
+   CONTROLS SECTION
+   -------------------------------------------------------------------------- */
+.player-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.control-row-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 4px;
+}
+
+.volume-control-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  padding: 4px 12px 4px 6px;
+  border-radius: var(--radius-full);
+  flex: 1;
+  max-width: 200px;
+}
+
+.volume-btn {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.volume-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.volume-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 10px var(--color-primary);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.active-timer-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary-subtle);
+  border: 1px solid var(--border-glow);
+  color: var(--color-primary);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.active-timer-chip svg {
+  width: 13px;
+  height: 13px;
+}
+
+.chip-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.chip-close-btn:hover {
+  color: #fff;
+}
+
+/* GIANT MAIN PLAY BUTTON */
+.main-play-action {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0;
+}
+
+.play-halo {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--color-primary-glow);
+  filter: blur(20px);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.main-play-btn {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #04adf6 0%, #0077b6 100%);
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 28px rgba(4, 173, 246, 0.5),
+              inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 5;
+}
+
+.main-play-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 14px 34px rgba(4, 173, 246, 0.7),
+              inset 0 2px 6px rgba(255, 255, 255, 0.5);
+}
+
+.main-play-btn:active {
+  transform: scale(0.95);
+}
+
+.main-play-btn svg {
+  width: 32px;
+  height: 32px;
+}
+
+.main-play-btn .icon-play {
+  margin-left: 4px; /* Optical center compensation */
+}
+
+/* Buffering Spinner */
+.spinner-ring {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  border: 3px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Quick Cabina Bar */
+.quick-interact-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.btn-whatsapp-cabina,
+.btn-prayer-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-whatsapp-cabina {
+  background: #25D366;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp-cabina svg {
+  width: 17px;
+  height: 17px;
+}
+
+.btn-whatsapp-cabina:hover {
+  background: #20bd5a;
+  transform: translateY(-1px);
+}
+
+.btn-prayer-trigger {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+}
+
+.btn-prayer-trigger svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary);
+}
+
+.btn-prayer-trigger:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--border-glow);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   VIEW 2: HISTORIAL DE CANCIONES (RECENT TRACKS)
+   -------------------------------------------------------------------------- */
+.view-header {
+  margin-bottom: 16px;
+}
+
+.view-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.view-header p {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.history-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+}
+
+.history-thumb {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  background: #0d1525;
+}
+
+.history-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-song {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-artist {
+  font-size: 0.75rem;
+  color: var(--color-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-time {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--border-subtle);
+}
+
+.empty-icon {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
+
+.empty-state h3 {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.empty-state p {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   VIEW 3: ESTACIÓN & CONTACTO
+   -------------------------------------------------------------------------- */
+.station-profile-card {
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  margin-bottom: 16px;
+}
+
+.station-profile-logo {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #081120;
+  padding: 8px;
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 0 20px var(--color-primary-glow);
+  margin-bottom: 12px;
+}
+
+.station-profile-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.station-tagline {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.station-description {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.contact-links-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.contact-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  transform: translateX(3px);
+}
+
+.contact-card .card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-card.whatsapp .card-icon { background: rgba(37, 211, 102, 0.15); color: #25D366; }
+.contact-card.facebook .card-icon { background: rgba(24, 119, 242, 0.15); color: #1877F2; }
+.contact-card.email .card-icon    { background: rgba(234, 67, 53, 0.15); color: #EA4335; }
+.contact-card.web .card-icon      { background: var(--color-primary-subtle); color: var(--color-primary); }
+
+.contact-card .card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-card .card-text {
+  flex: 1;
+}
+
+.contact-card .label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.contact-card .val {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.contact-card .arrow {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.app-version-badge {
+  text-align: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.tech-subtext {
+  display: block;
+  color: var(--color-primary);
+  font-size: 0.68rem;
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   BOTTOM NAVIGATION BAR
+   -------------------------------------------------------------------------- */
+.bottom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(8, 14, 25, 0.85);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-subtle);
+  padding: 8px 12px 10px 12px;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 4px 14px;
+  border-radius: var(--radius-md);
+}
+
+.nav-icon-box svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+}
+
+.nav-item.active {
+  color: var(--color-primary);
+}
+
+.nav-item.active .nav-icon-box svg {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 8px var(--color-primary-glow));
+}
+
+.nav-item:hover {
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   DESKTOP PREVIEW TOOLS SIDEBAR
+   -------------------------------------------------------------------------- */
+.desktop-preview-tools {
+  width: 320px;
+}
+
+.tools-card {
+  background: rgba(14, 23, 38, 0.75);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.tools-badge {
+  display: inline-block;
+  background: var(--color-primary-subtle);
+  border: 1px solid var(--border-glow);
+  color: var(--color-primary);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+}
+
+.tools-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.tools-card p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.tools-section {
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tools-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.device-switch-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.btn-tool {
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-tool.active,
+.btn-tool:hover {
+  background: var(--color-primary-subtle);
+  border-color: var(--border-glow);
+  color: var(--color-primary);
+}
+
+.wifi-instruction-box {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+}
+
+.wifi-instruction-box p {
+  margin-bottom: 6px;
+  font-size: 0.75rem;
+}
+
+.wifi-instruction-box code {
+  display: block;
+  background: #000;
+  color: var(--color-primary);
+  font-family: monospace;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  margin-bottom: 6px;
+  user-select: all;
+  border: 1px solid var(--border-subtle);
+}
+
+.wifi-instruction-box small {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.stream-info-box .info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+  color: var(--text-secondary);
+}
+
+.color-highlight {
+  color: var(--color-primary);
+}
+
+.status-online {
+  color: var(--color-live);
+}
+
+.tools-footer {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   FULLSCREEN MODE (TOGGLEABLE)
+   -------------------------------------------------------------------------- */
+body.fullscreen-mode #app-wrapper {
+  padding: 0;
+  background: #000;
+}
+
+body.fullscreen-mode .device-container {
+  max-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+}
+
+body.fullscreen-mode .smartphone-frame {
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+body.fullscreen-mode .device-notch,
+body.fullscreen-mode .device-home-bar {
+  display: none;
+}
+
+body.fullscreen-mode .desktop-preview-tools {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   MODALS (SLEEP TIMER & PRAYER)
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-backdrop.hidden {
+  display: none;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 360px;
+  background: #0f1929;
+  border: 1px solid var(--border-glow);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px var(--color-primary-glow);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  animation: modalScale 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalScale {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.modal-title-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-primary);
+}
+
+.modal-title-box svg {
+  width: 20px;
+  height: 20px;
+}
+
+.modal-title-box h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: #fff;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.modal-close-btn:hover {
+  color: #fff;
+}
+
+.modal-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.timer-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.timer-opt-btn {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.timer-opt-btn:hover {
+  background: var(--color-primary-subtle);
+  border-color: var(--border-glow);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.timer-cancel-opt {
+  grid-column: span 2;
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+.timer-cancel-opt:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: rgba(239, 68, 68, 0.6);
+  color: #fff;
+}
+
+/* Prayer form */
+.prayer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px var(--color-primary-glow);
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.btn-send-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #25D366;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+}
+
+.btn-send-whatsapp svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-send-whatsapp:hover {
+  background: #20bd5a;
+  transform: translateY(-1px);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE (FOR REAL SMARTPHONES)
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  #app-wrapper {
+    padding: 0;
+    background: #000;
+  }
+
+  .device-container {
+    width: 100vw;
+    height: 100vh;
+    gap: 0;
+  }
+
+  .desktop-preview-tools {
+    display: none;
+  }
+
+  .smartphone-frame {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .device-notch {
+    display: none;
+  }
+
+  .device-home-bar {
+    display: none;
+  }
+
+  .app-screen {
+    border-radius: 0;
+  }
+}

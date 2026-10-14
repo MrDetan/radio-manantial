@@ -1,0 +1,24 @@
+{
+  "name": "Radio Manantial 105.3 FM",
+  "short_name": "Manantial FM",
+  "description": "Radio Manantial 105.3 FM sonando para ti desde Los Mochis, Sinaloa, México.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070d18",
+  "theme_color": "#04adf6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

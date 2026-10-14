@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#070c17" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="Radio Manantial 105.3 FM - Sonando para ti desde Los Mochis, Sinaloa, México. Música cristiana, alabanzas y palabra de fe las 24 horas." />
+  
+  <title>Radio Manantial 105.3 FM | En Vivo</title>
+  
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/logo.png" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div id="app-wrapper">
+    <!-- Desktop Simulator Device Frame Wrapper -->
+    <div class="device-container">
+      
+      <!-- Top device status bar (visible in mobile view & mockup) -->
+      <div class="smartphone-frame" id="smartphone-frame">
+        <!-- Speaker / Dynamic Island notch -->
+        <div class="device-notch">
+          <div class="camera-lens"></div>
+          <div class="speaker-grill"></div>
+        </div>
+
+        <!-- Phone Status Bar -->
+        <div class="device-status-bar">
+          <span class="status-time" id="status-time">12:00</span>
+          <div class="status-icons">
+            <span class="badge-live-tag"><span class="live-dot"></span> EN VIVO</span>
+            <svg class="icon-signal" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z" opacity="0.3"/>
+              <path d="M12 6a6 6 0 00-6 6c0 1.48.54 2.84 1.43 3.9L12 19l4.57-3.1A5.96 5.96 0 0018 12a6 6 0 00-6-6z"/>
+            </svg>
+            <svg class="icon-wifi" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A17.9 17.9 0 0012 4zm0 4c3.48 0 6.64 1.35 9 3.55L12 19.3 3 11.55C5.36 9.35 8.52 8 12 8z"/>
+            </svg>
+            <svg class="icon-battery" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="2" y="6" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M21 10h1a1 1 0 011 1v2a1 1 0 01-1 1h-1v-4z"/>
+              <rect x="4" y="8" width="12" height="8" rx="1"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- APP CONTENT AREA -->
+        <div class="app-screen" id="app-screen">
+          
+          <!-- Header Bar -->
+          <header class="app-header">
+            <div class="header-brand">
+              <img src="/assets/logo-brand.png" alt="Radio Manantial 105.3 FM" class="header-logo" id="header-logo" onerror="this.src='/assets/logo.png'" />
+              <div class="header-meta">
+                <span class="station-name">Radio Manantial</span>
+                <span class="station-dial">105.3 FM • Los Mochis</span>
+              </div>
+            </div>
+            
+            <div class="header-actions">
+              <button class="icon-btn" id="btn-open-timer" title="Temporizador de apagado" aria-label="Temporizador">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span class="timer-badge" id="timer-active-badge"></span>
+              </button>
+
+              <button class="icon-btn" id="btn-share" title="Compartir radio" aria-label="Compartir">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="18" cy="5" r="3"/>
+                  <circle cx="6" cy="12" r="3"/>
+                  <circle cx="18" cy="19" r="3"/>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                </svg>
+              </button>
+            </div>
+          </header>
+
+          <!-- Main Scrollable Views -->
+          <main class="app-body">
+            
+            <!-- VIEW 1: REPRODUCTOR (PLAYER) -->
+            <section class="tab-view active" id="view-player">
+              
+              <!-- Album / Station Artwork Card -->
+              <div class="artwork-container">
+                <div class="artwork-glow" id="artwork-glow"></div>
+                <div class="artwork-disc-wrapper" id="artwork-disc-wrapper">
+                  <div class="artwork-card" id="artwork-card">
+                    <img src="/assets/logo.png" alt="Radio Manantial 105.3 FM" id="album-art" class="album-art-img" />
+                    <div class="artwork-overlay"></div>
+                    <div class="live-pill">
+                      <span class="pulsing-record"></span>
+                      <span id="stream-status-text">EN VIVO</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Audio Spectrum Visualizer (Live FFT AudioContext) -->
+              <div class="visualizer-container">
+                <canvas id="visualizer-canvas" width="340" height="48"></canvas>
+              </div>
+
+              <!-- Song & Artist Metadata Card -->
+              <div class="song-info-card">
+                <div class="song-title-wrapper">
+                  <h1 class="song-title" id="song-title">Radio Manantial 105.3 FM</h1>
+                </div>
+                <h2 class="song-artist" id="song-artist">Sonando para ti desde Los Mochis, Sinaloa</h2>
+                <div class="stream-stats-chip" id="stream-stats-chip">
+                  <span class="signal-indicator">
+                    <span></span><span></span><span></span>
+                  </span>
+                  <span id="stream-quality-text">HD 128 kbps • Estéreo</span>
+                  <span class="bullet-sep">•</span>
+                  <span id="listeners-count-text">Oyentes en línea</span>
+                </div>
+              </div>
+
+              <!-- Player Controls Section -->
+              <div class="player-controls">
+                
+                <!-- Quick Auxiliary Actions -->
+                <div class="control-row-secondary">
+                  <!-- Mute / Volume Popover Toggle -->
+                  <div class="volume-control-box">
+                    <button class="icon-btn volume-btn" id="btn-volume-toggle" title="Control de volumen" aria-label="Volumen">
+                      <svg id="icon-vol-high" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                      </svg>
+                      <svg id="icon-vol-mute" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <line x1="23" y1="9" x2="17" y2="15"/>
+                        <line x1="17" y1="9" x2="23" y2="15"/>
+                      </svg>
+                    </button>
+                    <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="0.9" aria-label="Nivel de volumen" />
+                  </div>
+
+                  <!-- Sleep Timer indicator if active -->
+                  <div class="active-timer-chip hidden" id="chip-timer-countdown">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span id="timer-remaining-text">--:--</span>
+                    <button id="btn-cancel-timer" class="chip-close-btn" title="Cancelar temporizador">✕</button>
+                  </div>
+                </div>
+
+                <!-- Main Giant Play / Stop Button -->
+                <div class="main-play-action">
+                  <div class="play-halo"></div>
+                  <button class="main-play-btn" id="btn-play-pause" aria-label="Reproducir señal en vivo" title="Reproducir / Detener">
+                    <div class="spinner-ring hidden" id="buffering-spinner"></div>
+                    <svg class="icon-play" id="icon-play" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <svg class="icon-stop hidden" id="icon-stop" viewBox="0 0 24 24" fill="currentColor">
+                      <rect x="6" y="6" width="12" height="12" rx="2.5"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Quick Cabina WhatsApp & Prayer Request Button -->
+                <div class="quick-interact-bar">
+                  <a href="https://api.whatsapp.com/send?phone=526682288161&text=Hola%20Radio%20Manantial%2C%20los%20escucho%20desde%20la%20App%20y%20quiero%20saludar%20y%20pedir%20un%20tema" 
+                     target="_blank" rel="noopener noreferrer" class="btn-whatsapp-cabina" id="btn-whatsapp-cabina">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-5.805 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                    <span>Escribir a Cabina</span>
+                  </a>
+
+                  <button class="btn-prayer-trigger" id="btn-quick-prayer" title="Pedir oración o saludo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>Petición / Saludo</span>
+                  </button>
+                </div>
+              </div>
+
+            </section>
+
+            <!-- VIEW 2: HISTORIAL DE CANCIONES (RECENT TRACKS) -->
+            <section class="tab-view" id="view-history">
+              <div class="view-header">
+                <h2>Canciones Recientes</h2>
+                <p>Las últimas alabanzas y temas transmitidos</p>
+              </div>
+
+              <div class="history-list" id="history-list">
+                <!-- Dynamically populated or empty state -->
+                <div class="empty-state">
+                  <div class="empty-icon">🎵</div>
+                  <h3>Registrando transmisión...</h3>
+                  <p>A medida que la radio continúe sonando, aquí verás el historial de canciones detectadas en vivo.</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- VIEW 3: ESTACIÓN & CONTACTO (ABOUT & SCHEDULE) -->
+            <section class="tab-view" id="view-station">
+              <div class="station-profile-card">
+                <img src="/assets/logo.png" alt="Radio Manantial 105.3 FM" class="station-profile-logo" />
+                <h2>Radio Manantial 105.3 FM</h2>
+                <span class="station-tagline">Sonando para ti desde Los Mochis Sinaloa, México</span>
+                <p class="station-description">
+                  Emisora cristiana dedicada a bendecir tu vida las 24 horas con la mejor música, alabanzas, estudios bíblicos, reflexiones y palabra de Dios.
+                </p>
+              </div>
+
+              <!-- Contact & Social Cards Grid -->
+              <div class="contact-links-grid">
+                <a href="https://api.whatsapp.com/send?phone=526682288161&text=Hola%20Radio%20Manantial%2C%20los%20escucho%20en%20vivo" 
+                   target="_blank" rel="noopener noreferrer" class="contact-card whatsapp">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-5.805 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                    </svg>
+                  </div>
+                  <div class="card-text">
+                    <span class="label">WhatsApp Cabina</span>
+                    <span class="val">+52 668 228 8161</span>
+                  </div>
+                  <span class="arrow">→</span>
+                </a>
+
+                <a href="https://www.facebook.com/radiomanantiallosmochis" target="_blank" rel="noopener noreferrer" class="contact-card facebook">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                  </div>
+                  <div class="card-text">
+                    <span class="label">Facebook Oficial</span>
+                    <span class="val">@radiomanantiallosmochis</span>
+                  </div>
+                  <span class="arrow">→</span>
+                </a>
+
+                <a href="mailto:rm105produccion@hotmail.com" class="contact-card email">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                  </div>
+                  <div class="card-text">
+                    <span class="label">Correo de Producción</span>
+                    <span class="val">rm105produccion@hotmail.com</span>
+                  </div>
+                  <span class="arrow">→</span>
+                </a>
+
+                <a href="https://radiomanantial105fm.com/" target="_blank" rel="noopener noreferrer" class="contact-card web">
+                  <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="2" y1="12" x2="22" y2="12"/>
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                  </div>
+                  <div class="card-text">
+                    <span class="label">Sitio Web Oficial</span>
+                    <span class="val">radiomanantial105fm.com</span>
+                  </div>
+                  <span class="arrow">→</span>
+                </a>
+              </div>
+
+              <!-- Technical & Play Store Ready Card -->
+              <div class="app-version-badge">
+                <span>Radio Manantial App v1.0.0</span>
+                <span class="tech-subtext">Google Play Store Edition • Android Ready</span>
+              </div>
+            </section>
+
+          </main>
+
+          <!-- Bottom Navigation Bar -->
+          <nav class="bottom-nav">
+            <button class="nav-item active" data-target="view-player" id="nav-btn-player">
+              <div class="nav-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
+              </div>
+              <span>En Vivo</span>
+            </button>
+
+            <button class="nav-item" data-target="view-history" id="nav-btn-history">
+              <div class="nav-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 8v4l3 3"/>
+                  <circle cx="12" cy="12" r="9"/>
+                </svg>
+              </div>
+              <span>Historial</span>
+            </button>
+
+            <button class="nav-item" data-target="view-station" id="nav-btn-station">
+              <div class="nav-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="2"/>
+                  <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
+                </svg>
+              </div>
+              <span>Estación</span>
+            </button>
+          </nav>
+
+        </div> <!-- /app-screen -->
+
+        <!-- Bottom Home Indicator bar (iOS/Android bar) -->
+        <div class="device-home-bar"></div>
+
+      </div> <!-- /smartphone-frame -->
+
+      <!-- SIDEBAR CONTROLS (Only visible on Desktop/Tablet preview) -->
+      <aside class="desktop-preview-tools">
+        <div class="tools-card">
+          <div class="tools-badge">MODO SIMULADOR DE APP</div>
+          <h3>Vista Previa Móvil</h3>
+          <p>Esta es exactamente la apariencia que tendrá tu aplicación en un teléfono Android en la Play Store.</p>
+          
+          <div class="tools-section">
+            <label class="tools-label">Dispositivo de prueba</label>
+            <div class="device-switch-row">
+              <button class="btn-tool active" id="btn-device-phone">📱 Celular</button>
+              <button class="btn-tool" id="btn-device-full">🖥️ Pantalla Completa</button>
+            </div>
+          </div>
+
+          <div class="tools-section">
+            <label class="tools-label">Prueba en tu Celular por Wi-Fi</label>
+            <div class="wifi-instruction-box">
+              <p>Puedes abrir esta misma pantalla en tu teléfono conectándote a la red local:</p>
+              <code id="local-ip-display">http://192.168.1.161:3000</code>
+              <small>Usa la opción <strong>"Agregar a pantalla principal"</strong> en tu celular para probarla como app instalada.</small>
+            </div>
+          </div>
+
+          <div class="tools-section stream-info-box">
+            <label class="tools-label">Estado de la transmisión</label>
+            <div class="info-row">
+              <span>Señal:</span>
+              <strong class="color-highlight">radioca.st/stream</strong>
+            </div>
+            <div class="info-row">
+              <span>Metadatos:</span>
+              <strong id="meta-ping-status" class="status-online">En línea (5s)</strong>
+            </div>
+            <div class="info-row">
+              <span>Formato:</span>
+              <span>MP3 128kbps / 44.1kHz</span>
+            </div>
+          </div>
+
+          <div class="tools-footer">
+            <span>Radio Manantial 105.3 FM ©</span>
+          </div>
+        </div>
+      </aside>
+
+    </div> <!-- /device-container -->
+  </div> <!-- /app-wrapper -->
+
+  <!-- MODAL: TEMPORIZADOR DE APAGADO (SLEEP TIMER) -->
+  <div class="modal-backdrop hidden" id="modal-timer">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <h3>Temporizador de Apagado</h3>
+        </div>
+        <button class="modal-close-btn" id="btn-close-timer-modal">✕</button>
+      </div>
+
+      <p class="modal-desc">La reproducción se detendrá automáticamente cuando termine el tiempo para que puedas dormir escuchando la radio:</p>
+
+      <div class="timer-options-grid">
+        <button class="timer-opt-btn" data-minutes="15">15 minutos</button>
+        <button class="timer-opt-btn" data-minutes="30">30 minutos</button>
+        <button class="timer-opt-btn" data-minutes="45">45 minutos</button>
+        <button class="timer-opt-btn" data-minutes="60">1 hora</button>
+        <button class="timer-opt-btn" data-minutes="90">1 hr 30 min</button>
+        <button class="timer-opt-btn timer-cancel-opt" data-minutes="0">Desactivar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PETICIÓN DE ORACIÓN O MENSAJE -->
+  <div class="modal-backdrop hidden" id="modal-prayer">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <h3>Enviar Mensaje a Cabina</h3>
+        </div>
+        <button class="modal-close-btn" id="btn-close-prayer-modal">✕</button>
+      </div>
+
+      <p class="modal-desc">Envía tu petición de oración, saludo o solicita una alabanza directamente al WhatsApp de cabina:</p>
+
+      <div class="prayer-form">
+        <label class="form-label" for="prayer-name">Tu nombre:</label>
+        <input type="text" id="prayer-name" class="form-input" placeholder="Ej. Hermano David / Familia Pérez" />
+
+        <label class="form-label" for="prayer-text">Mensaje / Petición:</label>
+        <textarea id="prayer-text" class="form-textarea" rows="3" placeholder="Escribe aquí tu petición o saludo para la congregación..."></textarea>
+
+        <button class="btn-send-whatsapp" id="btn-send-prayer-whatsapp">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-5.805 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+          </svg>
+          <span>Abrir WhatsApp y Enviar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Element (Native HTML5 Stream) -->
+  <audio id="radio-audio" preload="none" crossorigin="anonymous"></audio>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
