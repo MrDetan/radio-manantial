@@ -633,3 +633,17 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   });
 }
+
+// Bloqueo estricto de rebote y arrastre vertical en la pantalla del reproductor
+document.addEventListener('touchmove', (e) => {
+  const activeTab = document.querySelector('.tab-view.active');
+  const isTimerOpen = !modalTimer.classList.contains('hidden');
+  const isPrayerOpen = !modalPrayer.classList.contains('hidden');
+
+  if (!activeTab || activeTab.id === 'view-player' || isTimerOpen || isPrayerOpen) {
+    if (!e.target.closest('.volume-slider') && !e.target.closest('textarea') && !e.target.closest('input')) {
+      e.preventDefault();
+    }
+  }
+}, { passive: false });
+
